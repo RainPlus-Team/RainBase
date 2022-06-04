@@ -1,0 +1,11 @@
+{
+    "title": "Rain Base",
+    "type": "tool",
+    "tags": [ "build" ],
+    "ignore": [
+        "*.md",
+        "LICENSE",
+        "icon.jpg",
+        "examples/*"
+    ]
+}

@@ -1,0 +1,48 @@
+WaitForRainBase(function()
+    print("RainBase Ready")
+end)
+
+hook.Add("InitPostEntity", "RBTEST", function()
+    local b = RainBase.UI.CreateBuilder("DFrame")
+
+    b:SetTitle("UI Builder Window")
+    b:Size(800, 600)
+    b:Pos(50, 50)
+
+    b:BeginChildren()
+        b:AddChild("DLabel")
+        b:Dock(FILL)
+        b:SetText("Hello World!")
+        b:SetFont("DermaLarge")
+
+        b:AddChild("DButton")
+        b:Dock(TOP)
+        b:SetText("Press me to test logging")
+        b:VGUI().DoClick = function()
+            RainBase.Logging.Debug("This is a debug msg")
+            RainBase.Logging.Error("This is an error msg")
+            RainBase.Logging.Info("This is an info msg")
+            RainBase.Logging.Warn("This is a warning msg")
+        end
+        
+        b:AddChild("DPanel")
+        b:Dock(BOTTOM)
+        b:BeginChildren()
+            b:AddChild("DLabel")
+            b:Dock(FILL)
+            b:SetText("I am nested!")
+            b:Color(Color(0, 0, 0))
+        b:EndChildren()
+
+        b:AddChild("DPanel")
+        b:Dock(RIGHT)
+        b:BeginChildren()
+            b:AddChild("DLabel")
+            b:Dock(FILL)
+            b:SetText("I am here!")
+            b:Color(Color(0, 0, 0))
+        b:EndChildren()
+    b:EndChildren()
+
+    b:MakePopup()
+end)
