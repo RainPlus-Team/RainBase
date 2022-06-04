@@ -5,7 +5,7 @@ function RainBase.Web.SimpleDownloadFile(url, path, callback)
         file.Write(path, body)
         if callback then
             xpcall(callback, function(err)
-                RainBase.Logging.Warn("Failed to call SimpleDownloadFile callback.", err)
+                RainBase.Logging.Warn("Failed to call SimpleDownloadFile callback.", "\n", Color(255, 63, 63), err, "\n", debug.traceback())
             end, size, headers, code)
         end
     end)
@@ -18,12 +18,12 @@ function RainBase.Web.DownloadFile(pararmeters, path, callback)
             file.Write(path, body)
             if succ then
                 xpcall(succ, function(err)
-                    RainBase.Logging.Warn("Failed to call DownloadFile HTTP success.", err)
+                    RainBase.Logging.Warn("Failed to call DownloadFile HTTP success.", "\n", Color(255, 63, 63), err, "\n", debug.traceback())
                 end, code, body, headers)
             end
             if callback then
                 xpcall(callback, function(err)
-                    RainBase.Logging.Warn("Failed to call DownloadFile callback.", err)
+                    RainBase.Logging.Warn("Failed to call DownloadFile callback.", "\n", Color(255, 63, 63), err, "\n", debug.traceback())
                 end, true, string.len(body))
             end
         end
