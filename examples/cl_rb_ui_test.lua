@@ -15,10 +15,10 @@ local function OpenDemoWindow()
         b:Dock(TOP)
         b:SetText("Press me to test logging")
         b.DoClick = function()
-            RainBase.Logging.Debug("This is a debug msg")
-            RainBase.Logging.Error("This is an error msg")
-            RainBase.Logging.Info("This is an info msg")
+            RainBase.Logging.Info("This is an info msg", Color(119, 0, 255), "and it has colors!")
             RainBase.Logging.Warn("This is a warning msg")
+            RainBase.Logging.Error("This is an error msg")
+            RainBase.Logging.Debug("This is a debug msg")
         end
         
         b:AddChild("DPanel")
