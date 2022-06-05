@@ -15,7 +15,7 @@ local function OpenDemoWindow()
         b:Dock(TOP)
         b:SetText("Press me to test logging")
         b.DoClick = function()
-            RainBase.Logging.Info("This is an info msg", Color(119, 0, 255), "and it has colors!")
+            RainBase.Logging.Info("This is an info msg", Color(0, 255, 119), " and it has colors!")
             RainBase.Logging.Warn("This is a warning msg")
             RainBase.Logging.Error("This is an error msg")
             RainBase.Logging.Debug("This is a debug msg")
@@ -44,7 +44,7 @@ local function OpenDemoWindow()
 end
 
 EnsureRainBase(function()
-    print("RainBase Ready")
+    RainBase.Logging.Info("RainBase Ready")
     OpenDemoWindow()
 end)
 

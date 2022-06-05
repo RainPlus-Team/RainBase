@@ -1,2 +1,5 @@
-RainBase.Util.IncludeDir("rainbase/modules/client")
-RainBase.Logging.Info("Loaded RainBase client side modules")
+RainBase.Logging.Info("Loading RainBase client side modules...")
+RainBase.Util.IncludeDir("rainbase/modules/client", function(lua)
+    RainBase.Logging.Info("Loading ", lua)
+end)
+RainBase.Logging.Info("RainBase client side modules loaded.")
