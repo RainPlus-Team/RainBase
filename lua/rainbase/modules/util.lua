@@ -1,17 +1,27 @@
 RainBase.Util = {}
 
 if SERVER then
-    function RainBase.Util.AddCSLuaDir(path)
+    function RainBase.Util.AddCSLuaDir(path, callback)
         local files = file.Find(path .. "/*.lua", "LUA")
         for _, v in ipairs(files) do
-            AddCSLuaFile(path .. "/" .. v)
+            local succ, cbResult = xpcall(callback, function(err)
+                RainBase.Logging.Warn("Failed to call AddCSLuaDir callback.", "\n", Color(255, 63, 63), err, "\n", debug.traceback())
+            end, v)
+            if not succ or cbResult then
+                AddCSLuaFile(path .. "/" .. v)
+            end
         end
     end
 end
 
-function RainBase.Util.IncludeDir(path)
+function RainBase.Util.IncludeDir(path, callback)
     local files = file.Find(path .. "/*.lua", "LUA")
     for _, v in ipairs(files) do
-        include(path .. "/" .. v)
+        local succ, cbResult = xpcall(callback, function(err)
+            RainBase.Logging.Warn("Failed to call IncludeDir callback.", "\n", Color(255, 63, 63), err, "\n", debug.traceback())
+        end, v)
+        if not succ or cbResult then
+            include(path .. "/" .. v)
+        end
     end
 end
