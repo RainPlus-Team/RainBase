@@ -39,5 +39,8 @@ function RainBase.Logging.Error( ... )
 end
 
 function RainBase.Logging.Debug( ... )
+    if not RainBase.ConVars.Debug:GetBool() then
+        return
+    end
     output(Color(184, 184, 184), "DBG", formatCaller(debug.getinfo(2)), handleMsg( ... ))
 end
