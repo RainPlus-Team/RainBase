@@ -7,7 +7,7 @@ if SERVER then
             local succ, cbResult = xpcall(callback, function(err)
                 RainBase.Logging.Warn("Failed to call AddCSLuaDir callback.", "\n", Color(255, 63, 63), err, "\n", debug.traceback())
             end, v)
-            if not succ or cbResult then
+            if not succ or cbResult ~= false then
                 AddCSLuaFile(path .. "/" .. v)
             end
         end
@@ -20,7 +20,7 @@ function RainBase.Util.IncludeDir(path, callback)
         local succ, cbResult = xpcall(callback, function(err)
             RainBase.Logging.Warn("Failed to call IncludeDir callback.", "\n", Color(255, 63, 63), err, "\n", debug.traceback())
         end, v)
-        if not succ or cbResult then
+        if not succ or cbResult ~= false then
             include(path .. "/" .. v)
         end
     end
