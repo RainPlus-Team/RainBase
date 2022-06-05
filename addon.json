@@ -6,6 +6,7 @@
         "*.md",
         "LICENSE",
         "icon.jpg",
-        "examples/*"
+        "examples/*",
+        ".github/*"
     ]
 }
