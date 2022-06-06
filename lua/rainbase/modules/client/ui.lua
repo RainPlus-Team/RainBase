@@ -83,13 +83,15 @@ local function UIBuilder(vpanel)
     return builder
 end
 
-function RainBase.UI.CreateBuilder(classname)
-    if not classname or classname == "_HUD_" then
+function RainBase.UI.CreateBuilder(source)
+    if not source then
         return UIBuilder(GetHUDPanel())
     else
-        local vpanel = vgui.Create(classname)
-        if IsValid(vpanel) then
-            return UIBuilder(vpanel)
+        if type(source) == "string" then
+            source = vgui.Create(source)
+        end
+        if ispanel(source) then
+            return UIBuilder(source)
         else
             return false
         end
